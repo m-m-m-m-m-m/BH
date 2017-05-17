@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ProjectsViewer" ng-cloak>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Projects: Breathful House</title>
+    <link rel="stylesheet" href="style/bootstrap.min.css">
+    <link rel="stylesheet" href="style/main.css">
+
+
+</head>
+<body ng-controller="MainController">
+
+<div class="page-container slide-side" ng-class="{'side-on': open}" id="page">
+
+    <div class="st-pusher">
+        <div class="main-panel">
+
+            <main-menu></main-menu>
+            <notification></notification>
+            <div ng-view class="main-panel-view"></div>
+
+        </div>
+    </div>
+
+    <div class="side-panel slide-side">
+        <control-panel></control-panel>
+    </div>
+
+    <loading></loading>
+
+</div>
+
+<script src="js/jq_and_ang.min.js"></script>
+<script src="js/three.min.js"></script>
+<script src="js/script.min.js"></script>
+
+
+</body>
+</html>

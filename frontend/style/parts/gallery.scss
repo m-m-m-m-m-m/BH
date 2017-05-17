@@ -1,0 +1,107 @@
+.photo-panel{
+  $thumb-img-height: 100px;
+  $thumb-img-width: 125px;
+  $thumb-img-margin: 10px;
+
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
+
+  @include sizes(100%, 100%);
+
+
+  &.zoomEnable{
+    cursor: move;
+  }
+
+
+  & .image{
+    @include sizes(100%, 100%);
+    background-color: white;
+
+
+    & .preloading_img{
+      @include sizes(100%, 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: ($color-main / 2);
+
+      & img{
+        display: block;
+        margin: 0 auto;
+        height: 100%;
+        width: auto;
+        max-width: 100%;
+        box-shadow: 0 0 25px 10px $shadow-black;
+
+        @include  respond-to(portrait){
+          width: 100%;
+          height: auto;
+          max-height: 100%;
+        }
+
+        &.portrait{
+          height: 100%;
+          width: auto;
+
+          @include  respond-to(portrait){
+            width: 100%;
+            height: auto;
+            max-height: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  & .thumb-images{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    white-space: nowrap;
+    max-width: 100%;
+
+    height: $thumb-img-height;
+    padding: 0 $thumb-img-margin;
+    overflow-y: hidden;
+    overflow-x: auto;
+
+    @include respond-to(notmobile){
+      overflow: hidden;
+    }
+
+    & img{
+      cursor: pointer;
+      width: $thumb-img-width;
+      height: $thumb-img-height;
+      display: inline-block;
+      margin: 0 $thumb-img-margin;
+      opacity: 0.35;
+      transform: translateY(20px) translateZ(0);
+      transition: opacity 0.5s, transform 0.5s;
+
+      &:hover{
+
+        @include respond-to(wide-screens){
+          opacity: 1;
+          transform: translateY(0) translateZ(0);
+          transition: transform 0.5s, opacity 0.5s;
+        }
+
+      }
+
+      &.active{
+        transform: translateY(0) translateZ(0);
+        transition: transform 0.5s;
+      }
+
+    }
+  }
+}
+
+

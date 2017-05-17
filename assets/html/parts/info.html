@@ -1,0 +1,47 @@
+<div ng-if="projects != null" class="project-info-full">
+    <h1 class="white-header">{{proj.name | projectName}}</h1>
+
+    <div class="main-info">
+        <div class="img-block">
+            <img-preloading source = "{{projects[currentProjectIndex].img_intro}}"></img-preloading>
+        </div>
+
+        <div class="text-block">
+            <ul>
+                <li>
+                    <div> General Area
+                        <span>{{proj.info.short.main.area}} m<sup>2</sup></span>
+                    </div>
+                </li>
+                <li>
+                    <div> Category
+                        <span>{{proj.info.category}}</span>
+                    </div>
+                </li>
+                <li>
+                    <div> General Dimension
+                        <span>{{proj.info.short.main.size}}</span>
+                    </div>
+                </li>
+                <li ng-repeat = "el in proj.info.short.secondary">
+                    <div>{{el.name}} <b ng-if="el.amount>1">x2</b> <span ng-repeat="val in el.value">{{val}} m<sup>2</sup></span></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="secondary-info">
+        <h1>Materials</h1>
+        <ul>
+            <li ng-repeat="el in proj.info.full">
+                <h1> {{el.name}} </h1>
+                <ul>
+                    <li ng-repeat="sub_el in el.text track by $index">
+                    {{sub_el}}
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+</div>

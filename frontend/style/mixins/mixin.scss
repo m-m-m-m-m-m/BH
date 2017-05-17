@@ -1,0 +1,76 @@
+@mixin roundButton($radius){
+  width: $radius;
+  height: $radius;
+  border-radius: $radius;
+  line-height: $radius;
+  text-align: center;
+}
+
+
+$small: 320px;
+$medium: 700px;
+$large: 1024px;
+
+@mixin respond-to($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $small) { @content; }
+  }
+  @else if $media == notmobile {
+    @media only screen and (min-width: $medium) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: $small + 1) and (max-width: $large - 1) { @content; }
+  }
+  @else if $media == wide-screens {
+    @media only screen and (min-width: $large) { @content; }
+  }
+  @else if $media == portrait{
+    @media only screen and (orientation: portrait) {@content;}
+  }
+}
+
+@mixin makeVisible($translate3d){
+  visibility: visible;
+  -webkit-transform: translate3d($translate3d, 0, 0);
+  transform: translate3d($translate3d, 0, 0);
+}
+
+@mixin  verticalCenter($disp, $z-index){
+  position: absolute;
+  top: 50%;
+  display: $disp;
+  outline: none;
+  text-align: left;
+  z-index: $z-index;
+  transform: translateY(-50%);
+}
+
+@mixin scrollBar($width, $track, $thumb){
+  &::-webkit-scrollbar{
+    width: $width;
+  }
+
+  &::-webkit-scrollbar-track{
+    background-color: $track;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $thumb;
+    outline: 5px solid darkslategrey;
+  }
+}
+
+
+@mixin positionAbsoluteCenter(){
+  position: absolute;
+  z-index: $highest-index + 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin sizes($width, $height){
+  width: $width;
+  height: $height;
+}

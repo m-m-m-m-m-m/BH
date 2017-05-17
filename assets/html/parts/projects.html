@@ -1,0 +1,78 @@
+<div ng-hide = "projects == null" class = "projects_view">
+
+    <div class="projects-menu" >
+        <div class="categories">
+            <ul>
+                <li ng-class="{'active': pr_filter.info.category == '' || pr_filter.info.category == null}"
+                    ng-click="pr_filter.info.category = ''">
+                    <span>{{filtered.length}}</span> All
+                </li>
+                <li ng-class="{'active': pr_filter.info.category == 'Custom design'}"
+                    ng-click="pr_filter.info.category = 'Custom design'">
+                    <span>{{filtered.length}}</span>Custom design
+                </li>
+                <li ng-class="{'active': pr_filter.info.category == 'Modular house'}"
+                    ng-click="pr_filter.info.category = 'Modular house'">
+                    <span>{{filtered.length}}</span> Modular house
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="projects_search">
+        <div ng-show="filtered.length == 0">
+            There are not any project by this filter
+        </div>
+
+        <ul ng-show="filtered.length > 0">
+            <li ng-class="{'active': project.name == projects[currentProjectIndex].name}"
+                ng-repeat="project in projects | filter: pr_filter as filtered"
+                ng-click="changeProject(project.id)"
+                scroll-to="project.id == currentProjectIndex"
+                class="project-elements">
+
+                <figure>
+                    <figcaption>
+
+                        <div>
+                            <h2>{{project.name | projectName}}</h2>
+                            <span>{{project.info.category}}</span>
+                            <span>{{project.info.short.main.size}}</span>
+                        </div>
+
+                    </figcaption>
+                    <img-preloading source = "{{project.img_intro}}"></img-preloading>
+                </figure>
+
+                <ul class="project-views">
+                    <li>
+                        <a ng-click="changeProject(project.id,'vis')">
+                            <svg-icon name="vis"></svg-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="changeProject(project.id,'plans')">
+                            <svg-icon name="plan"></svg-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="changeProject(project.id,'front')">
+                            <svg-icon name="front"></svg-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="changeProject(project.id,'photo')">
+                            <svg-icon name="photo"></svg-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="changeProject(project.id,'info')">
+                            <svg-icon name="info"></svg-icon>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+

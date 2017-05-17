@@ -1,0 +1,76 @@
+<div ng-if="projects != null">
+    <div class="btn-close" ng-if="open" ng-click="toogleSidePanel()">
+        <svg-icon  name="close"></svg-icon>
+    </div>
+
+    <div class="nav-menu">
+        <ul>
+            <li ng-click="goTo('http://breathfulhouse.com/')">home</li>
+            <li ng-click="goTo('http://breathfulhouse.com/index.php/blog')" >blog</li>
+            <li ng-click="goTo('http://breathfulhouse.com/index.php/contact')" >contact us</li>
+        </ul>
+    </div>
+
+    <div class="proj-header">
+        <figure>
+            <img-preloading source = "{{projects[currentProjectIndex].img_intro}}"></img-preloading>
+            <figcaption>
+                <h2>{{projects[currentProjectIndex].name | projectName}}<br>
+                    <span> {{projects[currentProjectIndex].info.category}} <br>
+                    {{projects[currentProjectIndex].info.short.main.size}} </span>
+                </h2>
+            </figcaption>
+        </figure>
+        <ul class="project-views">
+            <li ng-class="{active: view.name == 'vis'}"><a ng-click="changeView('vis')">
+                <svg-icon name="vis"></svg-icon>
+            </a></li>
+            <li ng-class="{active: view.name == 'plans'}"><a ng-click="changeView('plans')">
+                <svg-icon name="plan"></svg-icon>
+            </a></li>
+            <li ng-class="{active: view.name == 'front'}"><a ng-click="changeView('front')">
+                <svg-icon name="front"></svg-icon>
+            </a></li>
+            <li ng-class="{active: view.name == 'photo'}"><a ng-click="changeView('photo')">
+                <svg-icon name="photo"></svg-icon>
+            </a></li>
+            <li ng-class="{active: view.name == 'info'}"><a ng-click="changeView('info')">
+                <svg-icon name="info"></svg-icon>
+            </a></li>
+        </ul>
+
+    </div>
+
+
+    <div class="view-options" ng-show="view.options.length">
+        <ul>
+            <li ng-class="{'active': currentViewMethods[opt.func].state}"
+                ng-repeat="opt in view.options" ng-click="currentViewMethods(opt.func)">
+                <svg-icon name="{{opt.title}}"></svg-icon>
+            </li>
+        </ul>
+    </div>
+
+    <div class="project-current-info"
+         ng-class="{'short': view.options.length}">
+            <ul>
+                <li ng-repeat = "el in projects[currentProjectIndex].info.short.secondary">
+                    <div>
+                        <h1>{{el.name}} <span ng-if="el.amount > 1">x{{el.amount}}</span></h1>
+                    <span ng-repeat="val in el.value track by $index">
+                        {{val}} m<sup>2</sup>
+                    </span>
+                    </div>
+                </li>
+            </ul>
+    </div>
+
+
+
+    <div class="change-project">
+       <a ng-class="{'active': view.name == 'projects'}" ng-click="changeView('projects')">
+           <svg-icon name="logo"></svg-icon>
+           <span>Select <br>Project</span></a>
+    </div>
+
+</div>

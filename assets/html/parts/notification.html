@@ -1,0 +1,17 @@
+<div class="notification top center">
+        <ul>
+            <li class="notify" ng-repeat="notify in notifications track by $index"
+                ng-click="Notification.removeById(notify.id, $index)"
+                ng-class="notify.notify_style">
+
+                <div>
+                    <h3>{{ notify.body.name }}</h3>
+                    <ul ng-if="notify.body.information">
+                        <li ng-repeat="info in notify.body.information">
+                        <span> - Press <svg-icon name="{{info.icon}}"></svg-icon> to {{info.text}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+</div>

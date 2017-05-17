@@ -1,0 +1,379 @@
+.nav-menu{
+  $height:30px;
+  $mobile-height: 40px;
+  $nav-margin: 10px;
+
+
+  width: calc(100% - 50px);
+  position: absolute;
+  top: 10px;
+  left: 0;
+  z-index: 1000;
+  height: $mobile-height;
+
+  @include respond-to(wide-screens){
+    height: $height;
+    top: 0;
+    width: 100%;
+    z-index: 50;
+    position: relative;
+    background-color: #3085a3;
+  }
+
+  & ul{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    padding: 0 $nav-margin;
+    @include respond-to(wide-screens){
+      padding: 0;
+    }
+    margin: 0;
+
+    & li{
+      display: inline-block;
+      cursor: pointer;
+      overflow: hidden;
+      text-align: center;
+      line-height: $mobile-height;
+      height: $mobile-height;
+      color: white;
+      font-size: 0.8em;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 100;
+      margin: 0 5px;
+      padding: 0 2.5px;
+      &:hover {
+        background-color: rgba(0,0,0,0.2);
+      }
+
+      @include respond-to(wide-screens){
+
+        position: relative;
+        z-index: 1000;
+
+        line-height: $height;
+        height: $height;
+        width: 100px;
+        margin: 0;
+        &:nth-child(2){
+          border-left: 0.5px solid rgba(0, 0, 0, 0.3);
+          border-right: 0.5px solid rgba(0, 0, 0, 0.3);
+        }
+      }
+    }
+  }
+}
+
+
+.proj-header{
+  position: relative;
+  z-index: 61;
+  background-color: ($color-main / 1.2);
+  width: $side-panel-width;
+  height: auto;
+  box-shadow: 1px -2px 5px 0 rgba(0,0,0,0.4), 1px 2px 5px 0 rgba(0,0,0,0.4);
+
+
+  & figure {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    float: left;
+    overflow: hidden;
+    z-index: 101;
+    box-shadow: 0 2px 7px 0 $shadow-black;
+
+    & figcaption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        padding: 1.5em;
+        color: #fff;
+        text-transform: uppercase;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+
+        &::before, ::after{
+          pointer-events: none;
+        }
+
+        & h2{
+          font-size: 1.6em;
+          font-weight: 800;
+          margin: 0;
+
+          & span{
+            font-size: 0.5em;
+            font-weight: 100;
+            letter-spacing: 2px;
+            width: 100%;
+          }
+        }
+    }
+
+    }
+
+    & img {
+      opacity: 0.7;
+      height: 220px;
+      width: 100%;
+    }
+
+
+
+
+  & .project-views{
+    position: relative;
+    z-index: 101;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 1.5px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    background-color: ($color-main / 1.5);
+
+    & li{
+      $size:($side-panel-width / $project_views) - 1.5px;
+      width: $size;
+      height: $size;
+      margin: 0;
+      padding: 0;
+      opacity: 0.5;
+      background-color: $color-main * 1.2;
+      cursor: pointer;
+
+      & a{
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+
+        & .svg-icons {
+          width: 100%;
+          height: 100%;
+
+          & svg {
+            fill: white;
+            transform: scale(0.6);
+            transition: transform 0.5s ,fill 0.5s;
+          }
+        }
+      }
+
+      &:hover, &.active{
+        opacity: 1;
+        & a .svg-icons svg{
+          transform: scale(0.9) translateZ(0);
+          transition: transform 0.5s ;
+        }
+        transition: opacity 0.5s;
+      }
+    }
+  }
+}
+
+.view-options{
+
+  $height:40px;
+  $margin-top-bottom: 5px;
+
+  display: block;
+  text-align: center;
+  width: 260px;
+  height: $height;
+  padding: 0;
+  background-color: rgba(255,255,255,0.4);
+  box-shadow: 0 2px 6px 0 $shadow-black;
+  border-radius: 2.5px;
+  position: relative;
+  margin: $margin-top-bottom auto;
+  z-index: 101;
+
+  &.ng-hide-add,
+  &.ng-hide-remove {
+    transition: all linear 0.5s;
+  }
+
+  &.ng-hide{
+    opacity: 0;
+  }
+
+  & ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+
+    & li {
+      opacity: 0.7;
+      height: 100%;
+      width: $side-panel-width / $project_views / 1.5;
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+
+      &.active, :hover {
+        opacity: 1;
+      }
+
+      &.active .svg-icons svg{
+        fill:#fff;
+      }
+
+      & .svg-icons {
+        height: 100%;
+        & svg {
+          height: 100%;
+          transform: scale(0.9);
+          &:hover{
+            fill: #fff;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+.project-current-info{
+
+  $info-height: 30px + 220px + 60px + 40px + 60px + 10px;
+
+  width: 300px;
+  color: #3085a3;
+  padding-bottom: 0;
+
+  & h1{
+    font-size: 1.4em;
+    color: (#3085a3 / 2);
+  }
+
+  @include respond-to(wide-screens){
+    height: calc(100% - #{$info-height} + 50px);
+  }
+
+  &.short{
+    @include respond-to(wide-screens){
+      height: calc(100% - #{$info-height});
+
+    }
+  }
+
+
+
+
+  & ul{
+    height: auto;
+    @include respond-to(wide-screens){
+      height: 100%;
+      padding: 0.2em 0 1.1em 1.8em;
+    }
+    padding: 0.2em 0 calc(1.1em + 50px) 1.8em;
+    margin: 0;
+    background-color: white;
+    position: relative;
+    z-index: 99;
+    overflow-y: auto;
+    text-align: left;
+    list-style: none;
+    width: 100%;
+    @include scrollBar(5px, #25667c, #3699bb);
+
+    & li {
+    text-align: left;
+    display: inline-block;
+    margin: 0.3em;
+    width: 45%;
+
+      color: #25667c;
+    }
+  }
+
+  & span {
+    margin: 0 0.1em;
+  }
+
+}
+
+
+.change-project{
+  position: relative;
+  z-index: 101;
+  padding: 5px 0;
+  display: block;
+  box-shadow: 0 -2px 5px 0 rgba(0,0,0,0.4);
+  width: 100%;
+  height: 60px;
+  background-color: #3085a3;
+
+  @include respond-to(wide-screens){
+    position: absolute;
+    bottom:0;
+  }
+
+  & a{
+    position: relative;
+    display: block;
+    width: 80%;
+    height: 50px;
+    margin: 0 auto;
+    background-color: rgba(0,0,0,0.4);
+    color: white;
+    opacity: 0.6;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &.active{
+      opacity: 1;
+    }
+
+    & span{
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 60%;
+      text-wrap: normal;
+      height: 100%;
+      padding-top: 0.1em;
+      text-align: left;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      font:{
+        weight: 100;
+        size: 1.2em;
+      }
+
+    }
+
+    & .svg-icons{
+      position: absolute;
+      top: 5%;
+      left: 2em;
+      display: inline-block;
+      height: 90%;
+      max-width: 40%;
+
+      & svg{
+        height: 100%;
+        fill: white;
+      }
+    }
+  }
+
+}
+
+
+

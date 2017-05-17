@@ -1,0 +1,54 @@
+.loading-logo{
+  $width:300px;
+
+  width: $width;
+  height: $width;
+  @include positionAbsoluteCenter();
+
+  &.ng-hide{
+    opacity: 0;
+  }
+
+  &.ng-hide-add,
+  &.ng-hide-remove {
+    transition: all linear 0.5s;
+  }
+
+  & .svg-icons{
+    width: 100%;
+    height: 100%;
+    z-index: 98;
+    overflow: hidden;
+
+    & svg{
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 100;
+
+      stroke-width: 0.1;
+      stroke: rgba(0, 0, 0, .5);
+
+      & .part-1{ fill: #b8811e; }
+      & .part-2{fill: rgba(210, 159, 24, 0.78);}
+      & .part-3{fill: #40b842;}
+      & .part-4{fill: #7bdf43;}
+
+    }
+  }
+
+  &.loading{
+    & .svg-icons{
+      & svg{
+        animation: loading 5s infinite alternate;
+      }
+    }
+  }
+}
+
+@keyframes loading {
+  100%{
+    transform: rotateY(365deg) translateZ(0);
+  }
+}
+
